@@ -1,0 +1,57 @@
+<div class="my-4">
+    <h3>
+        Fill User Details
+    </h3>
+    <hr/>
+</div>
+
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input type="text" [(ngModel)]="user.firstname" 
+          class="form-control" 
+          id="name" 
+          name="name" 
+          placeholder="Enter your firstname"
+          pattern="^[A-Za-z]+$"
+          required #firstname="ngModel">
+          <small>
+            <div *ngIf="firstname.errors?.required && firstname.touched">This field is required</div>
+        </small>
+      </div>
+      
+
+      <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input type="text" [(ngModel)]="user.lastname" 
+          class="form-control" 
+          id="lastname" 
+          name="lastname" 
+          placeholder="Enter your lastname"
+          pattern="^[A-Za-z]+$"
+          required #lastname="ngModel">
+          <small>
+            <div *ngIf="lastname.errors?.required && lastname.touched">This field is required</div>
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" [(ngModel)]="user.email" 
+          class="form-control" 
+          id="email" 
+          name="email" 
+          placeholder="Enter your email address"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          required #email="ngModel">
+          <small>
+            <div *ngIf="email.errors?.required && email.touched">This field is required</div>
+          </small>
+      </div>
+
+      <button type="submit" [disabled]="userForm.invalid" class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>

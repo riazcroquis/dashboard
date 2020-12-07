@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefualtModule } from './layouts/defualt/defualt.module';
+import { UserService } from './services/user-service.service';
+import { PostsModule } from './modules/posts/posts.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,9 @@ import { DefualtModule } from './layouts/defualt/defualt.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     DefualtModule,
+    PostsModule,
   ],
-  providers: [
-
-  ],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
