@@ -6,7 +6,9 @@ import { UserService } from 'src/app/services/user-service.service';
 import { PostsComponent } from './posts.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -15,12 +17,15 @@ import { FormsModule } from '@angular/forms';
     UserFormComponent,
     UserListComponent,
     PostsComponent,
+    AddUserComponent,
+    EditUserComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     UserService
@@ -29,6 +34,8 @@ import { FormsModule } from '@angular/forms';
     UserFormComponent,
     UserListComponent,
     PostsComponent,
+    AddUserComponent,
+    EditUserComponent
   ]
 })
 export class PostsModule { }

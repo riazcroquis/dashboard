@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefualtModule } from './layouts/defualt/defualt.module';
 import { UserService } from './services/user-service.service';
 import { PostsModule } from './modules/posts/posts.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

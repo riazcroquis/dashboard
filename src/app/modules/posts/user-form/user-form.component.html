@@ -1,55 +1,59 @@
 <div class="my-4">
     <h3>
         Fill User Details
+        <div class="float-right">
+          <a (click)="cancel()" class="btn btn-danger">Cancel</a>
+        </div>
     </h3>
-    <hr/>
+    <hr>
 </div>
 
 <div class="card my-5">
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-        <label for="firstname">Firstname</label>
-        <input type="text" [(ngModel)]="user.firstname" 
-          class="form-control" 
-          id="name" 
-          name="name" 
-          placeholder="Enter your firstname"
-          pattern="^[A-Za-z]+$"
-          required #firstname="ngModel">
-          <small>
-            <div *ngIf="firstname.errors?.required && firstname.touched">This field is required</div>
-        </small>
-      </div>
-      
+    <form (ngSubmit)="submit()" novalidate [formGroup]="userForm" >
+        <div class="form-group row">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{ 'is-valid' : name.valid && (name.dirty || name.touched), 
+            'is-invalid': name.invalid && (name.dirty || name.touched) }" 
+            name="name" id="name" placeholder="Enter you name"
+            formControlName="name">
+            <div class="valid-feedback">{{name.valid && (name.dirty || name.touched) ? 'All good' : ''}}</div>
+            <div class="invalid-feedback">{{name.errors?.required && (name.dirty || name.touched) ? 'Name must be provided' : ''}}</div>
+        </div>
 
-      <div class="form-group">
-        <label for="lastname">Lastname</label>
-        <input type="text" [(ngModel)]="user.lastname" 
-          class="form-control" 
-          id="lastname" 
-          name="lastname" 
-          placeholder="Enter your lastname"
-          pattern="^[A-Za-z]+$"
-          required #lastname="ngModel">
-          <small>
-            <div *ngIf="lastname.errors?.required && lastname.touched">This field is required</div>
-        </small>
-      </div>
+        <div class="form-group row">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{ 'is-valid' : department.valid && (department.dirty || department.touched), 
+            'is-invalid': department.invalid && (department.dirty || department.touched) }" 
+            name="department" id="department" placeholder="Enter your department"
+            formControlName="department">
+            <div class="valid-feedback">{{department.valid && (department.dirty || department.touched) ? 'All good' : ''}}</div>
+            <div class="invalid-feedback">{{department.errors?.required && (department.dirty || department.touched) ? 'Department must be provided' : ''}}</div>
+        </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" [(ngModel)]="user.email" 
-          class="form-control" 
-          id="email" 
-          name="email" 
-          placeholder="Enter your email address"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          required #email="ngModel">
-          <small>
-            <div *ngIf="email.errors?.required && email.touched">This field is required</div>
-          </small>
-      </div>
+        <div class="form-group row">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{ 'is-valid' : email.valid && (email.dirty || email.touched), 
+            'is-invalid': email.invalid && (email.dirty || email.touched) }" 
+            name="email" id="email" placeholder="Enter your email address"
+            formControlName="email">
+            <div class="valid-feedback">{{email.valid && (email.dirty || email.touched) ? 'All good' : ''}}</div>
+            <div class="invalid-feedback">{{email.errors?.required && (email.dirty || email.touched) ? 'Email address must be provided' : ''}}</div>
+        </div>
+
+        <div class="form-group row">
+            <label for="age">Age</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{ 'is-valid' : age.valid && (age.dirty || age.touched), 
+            'is-invalid': age.invalid && (age.dirty || age.touched) }" 
+            name="age" id="age" placeholder="Enter your age"
+            formControlName="age">
+            <div class="valid-feedback">{{age.valid && (age.dirty || age.touched) ? 'All good' : ''}}</div>
+            <div class="invalid-feedback">{{age.errors?.required && (age.dirty || age.touched) ? 'Age must be provided' : ''}}</div>
+        </div>
 
       <button type="submit" [disabled]="userForm.invalid" class="btn btn-info">Submit</button>
     </form>

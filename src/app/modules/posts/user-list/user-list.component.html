@@ -4,17 +4,24 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
             <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
             <td>{{ user.id}}</td>
-            <td>{{ user.firstname }}</td>
-            <td>{{ user.lastname }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.department }}</td>
             <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            <td>{{ user.age }}</td>
+            <td>
+              <a class="btn btn-info" routerLink="../edituser/{{user.id}}">Update</a> &nbsp;&nbsp;&nbsp;
+              <button class="btn btn-danger" (click)="deleteUser(user.id)" >Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
