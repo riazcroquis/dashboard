@@ -22,10 +22,10 @@ export class AddUserComponent implements OnInit {
   public addUser(userData: User){
     this.user = userData;
     this._us.save(this.user).subscribe( () => {
-        alert( `New user ${this.user.name} has been added` );
-        this.gotoUserList();
-      }
-    )
+      alert( `New user ${this.user.name} has been added` );
+      this.gotoUserList();
+    } )
+  
   }
 
   gotoUserList() {

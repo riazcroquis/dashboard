@@ -27,11 +27,6 @@ export class UserService {
     return this._http.get<User>(`${this.usersUrl}/${id}`);
   } 
 
-  // public updateUser(id: number, value: any): Observable<Object> {
-  //   return this._http.put(`${this.usersUrl}/${id}`, value);
-  // }
-  // check how to update all values for user
-
   public deleteUser(id: number): Observable<any> {
     return this._http.delete(`${this.usersUrl}/${id}`, {responseType: 'text'});
   }
@@ -42,6 +37,10 @@ export class UserService {
 
   public updateUser(id : number, user: User){
     return this._http.put(`${this.usersUrl}/${id}`, user);
+  }
+
+  public checkUser(email : string): Observable<any>{
+    return this._http.get<boolean>(`${this.usersUrl}/check/${email}`);
   }
 
 }

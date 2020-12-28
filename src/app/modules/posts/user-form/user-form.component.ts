@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
 import { first } from 'rxjs/operators';
+import { User } from '../user';
 
 @Component({
   selector: 'user-form',
@@ -18,13 +19,14 @@ export class UserFormComponent implements OnInit {
   userForm: any;
   id: any;
   isEditMode: boolean = false;
+  user : User;
   
   constructor(
     private _fb: FormBuilder,
     private _ar: ActivatedRoute,
     private _us: UserService,
     ) {
-      //this.user = new User();
+      this.user = new User();
   }
 
   get name() 
@@ -77,8 +79,24 @@ export class UserFormComponent implements OnInit {
   }
 
   submit(){
-    if(this.userForm.valid){
-      this.onSubmit.emit(this.userForm.value);
+    if(this.userForm.valid && !(this.isEditMode)){
+      this.user = this.userForm.value;
+      console.log(this.user);
+      // checking if the user with same email exists 
+      this._us.checkUser(this.user.email)
+      .pipe(first()).subscribe( flag => {
+        console.log(flag);
+        if(flag){
+          this.onSubmit.emit(this.userForm.value);
+        }
+        else{
+          alert(`User with the ${this.user.email} already exists`);
+          alert(`Please enter a different email address`);
+        }
+      })
+      
+    }else if(this.userForm.valid && this.isEditMode){
+      this.onSubmit.emit(this.userForm.value);  
     }
   }
 
